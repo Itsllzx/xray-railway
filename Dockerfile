@@ -10,4 +10,4 @@ WORKDIR /app
 COPY config.json .
 
 # اصلاح شده: استفاده از شل برای اجرای صحیح دستورات پشت سر هم
-CMD sh -c "sed -i 's/\"PORT\"/'${PORT:-8080}'/g' config.json && xray run -c config.json"
+CMD sh -c "sed -i 's/PORT/'${PORT:-8080}'/g' config.json && xray run -c config.json"

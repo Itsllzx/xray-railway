@@ -4,7 +4,7 @@
   },
   "inbounds": [
     {
-      "port": "__PORT__",
+      "port": __PORT__,
       "protocol": "vless",
       "settings": {
         "clients": [

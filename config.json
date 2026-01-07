@@ -16,13 +16,17 @@
         "decryption": "none"
       },
       "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "/vless-path"
-        }
-      }
+  "network": "ws",
+  "wsSettings": {
+    "path": "/vless-path",
+    "headers": {
+      "Host": "xray-railway-production-a40c.up.railway.app" 
     }
-  ],
+  },
+  "sockopt": {
+    "tcpFastOpen": true
+  }
+},
   "outbounds": [
     {
       "protocol": "freedom",

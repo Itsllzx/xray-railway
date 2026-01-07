@@ -4,7 +4,7 @@
   },
   "inbounds": [
     {
-      "port": 8080,
+      "port": PORT,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -16,17 +16,13 @@
         "decryption": "none"
       },
       "streamSettings": {
-  "network": "ws",
-  "wsSettings": {
-    "path": "/vless-path",
-    "headers": {
-      "Host": "xray-railway-production-a40c.up.railway.app" 
+        "network": "ws",
+        "wsSettings": {
+          "path": "/vless-path"
+        }
+      }
     }
-  },
-  "sockopt": {
-    "tcpFastOpen": true
-  }
-},
+  ],
   "outbounds": [
     {
       "protocol": "freedom",

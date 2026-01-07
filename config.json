@@ -1,13 +1,36 @@
-FROM alpine:latest
-
-RUN apk add --no-cache healthcheck-tools curl
-
-# دانلود Xray
-RUN curl -L -o /tmp/xray.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip && \
-    unzip /tmp/xray.zip -d /usr/bin && \
-    chmod +x /usr/bin/xray
-
-WORKDIR /app
-COPY . .
-
-CMD sed -i "s/PORT/$PORT/g" config.json && xray run -c config.json
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": PORT,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "e60567f8-654d-4444-9642-88229b4e334a",
+            "level": 0
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/vless-path"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
+    }
+  ]
+}
